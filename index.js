@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
 const persons = [
@@ -29,6 +30,7 @@ const generateId = () => {
 };
 
 app.use(express.json());
+app.use(morgan("tiny"));
 
 app.get("/api/persons", (req, res) => {
   res.json(persons);
