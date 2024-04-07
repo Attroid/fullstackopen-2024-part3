@@ -77,10 +77,15 @@ const App = () => {
       number,
     };
 
-    personService.create(person).then((createdPerson) => {
-      showNotification(`Added ${createdPerson.name}`, "success");
-      setPersons(persons.concat(createdPerson));
-    });
+    personService
+      .create(person)
+      .then((createdPerson) => {
+        showNotification(`Added ${createdPerson.name}`, "success");
+        setPersons(persons.concat(createdPerson));
+      })
+      .catch((err) => {
+        showNotification(err.response.data.error, "error");
+      });
   };
 
   const deletePerson = (person) => {
