@@ -24,6 +24,12 @@ const persons = [
   },
 ];
 
+const generateId = () => {
+  return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
+};
+
+app.use(express.json());
+
 app.get("/api/persons", (req, res) => {
   res.json(persons);
 });
@@ -58,6 +64,19 @@ app.delete("/api/persons/:id", (req, res) => {
   } else {
     res.status(404).end();
   }
+});
+
+app.post("/api/persons", (req, res) => {
+  const body = req.body;
+
+  const person = {
+    id: generateId(),
+    name: body.name,
+    number: body.number,
+  };
+
+  persons.push(person);
+  res.status(201).json(person);
 });
 
 const PORT = 3001;
