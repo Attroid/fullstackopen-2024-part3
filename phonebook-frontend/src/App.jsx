@@ -88,8 +88,8 @@ const App = () => {
       return;
     }
 
-    personService.del(person.id).then((deletedPerson) => {
-      setPersons(persons.filter((person) => person.id !== deletedPerson.id));
+    personService.del(person.id).then(() => {
+      setPersons(persons.filter(({ id }) => id !== person.id));
     });
   };
 
