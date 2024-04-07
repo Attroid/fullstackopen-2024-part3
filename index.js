@@ -68,17 +68,13 @@ app.get("/api/persons/:id", (req, res) => {
 });
 
 app.delete("/api/persons/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const indexOfPerson = persons.indexOf(
-    persons.find((person) => person.id === id)
-  );
-
-  if (indexOfPerson !== -1) {
-    persons.splice(indexOfPerson, 1);
-    res.status(204).end();
-  } else {
-    res.status(404).end();
-  }
+  Person.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch(() => {
+      res.status(404).end();
+    });
 });
 
 app.post("/api/persons", (req, res) => {
