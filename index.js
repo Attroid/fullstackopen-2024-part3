@@ -30,6 +30,7 @@ const generateId = () => {
 };
 
 app.use(express.json());
+app.use(express.static("phonebook-frontend/dist"));
 
 morgan.token("body", (req, res) =>
   req.method === "POST" ? JSON.stringify(req.body) : ""
