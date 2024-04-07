@@ -109,6 +109,14 @@ app.post("/api/persons", (req, res, next) => {
     .catch((err) => next(err));
 });
 
+app.put("/api/persons/:id", (req, res, next) => {
+  Person.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => next(err));
+});
+
 app.use((err, req, res, next) => {
   console.error(err.message);
 
