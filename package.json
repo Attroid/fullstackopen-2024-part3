@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Attroid/fullstackopen-2024-part3#readme",
   "dependencies": {
     "express": "^4.19.2",
+    "mongoose": "^8.3.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
