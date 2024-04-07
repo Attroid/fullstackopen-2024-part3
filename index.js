@@ -92,22 +92,22 @@ app.post("/api/persons", (req, res) => {
     return res.status(400).json({
       error: "number is required",
     });
-  } else if (
+  } /* else if (
     persons.find((person) => person.name === body.name) !== undefined
   ) {
     return res.status(400).json({
       error: "name must be unique",
     });
-  }
+  } */
 
-  const person = {
-    id: generateId(),
+  const person = new Person({
     name: body.name,
     number: body.number,
-  };
+  });
 
-  persons.push(person);
-  res.status(201).json(person);
+  person.save().then(() => {
+    res.status(201).json(person);
+  });
 });
 
 const PORT = process.env.PORT;
